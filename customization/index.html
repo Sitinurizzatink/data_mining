@@ -1,0 +1,793 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Tugas Data Mining">
+      
+      
+        <link rel="canonical" href="https://github.com/Sitinurizzatink/data-mining.git/customization/">
+      
+      
+        <meta name="author" content="Siti Nurizzatin kamala">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>K-Nearest Neighbor - DATA MINING</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#k-nearest-neighbor" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.com/Sitinurizzatink/data-mining.git" title="DATA MINING" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              DATA MINING
+            </span>
+            <span class="md-header-nav__topic">
+              K-Nearest Neighbor
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Sitinurizzatink" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siti Nurizzatin Kamala
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="Kata Pengantar" class="md-tabs__link md-tabs__link--active">
+        Kata Pengantar
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://github.com/Sitinurizzatink/data-mining.git" title="DATA MINING" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    DATA MINING
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Sitinurizzatink" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siti Nurizzatin Kamala
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Kata Pengantar" class="md-nav__link">
+      Kata Pengantar
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="K-Means Clustering" class="md-nav__link">
+      K-Means Clustering
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        K-Nearest Neighbor
+      </label>
+    
+    <a href="./" title="K-Nearest Neighbor" class="md-nav__link md-nav__link--active">
+      K-Nearest Neighbor
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan" title="Pendahuluan" class="md-nav__link">
+    Pendahuluan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementasi" title="Implementasi" class="md-nav__link">
+    Implementasi
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bagian-1-pemrosesan-data-sebelumnya" title="Bagian 1 - Pemrosesan Data Sebelumnya" class="md-nav__link">
+    Bagian 1 - Pemrosesan Data Sebelumnya
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-2-memasukkan-k-nn-model" title="Bagian 2 - Memasukkan K-NN. Model" class="md-nav__link">
+    Bagian 2 - Memasukkan K-NN. Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-3-memprediksi-hasil-kumpulan-tes" title="Bagian 3 - Memprediksi hasil kumpulan Tes" class="md-nav__link">
+    Bagian 3 - Memprediksi hasil kumpulan Tes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-4-visualisasi-data-dan-matriks-kebingungan" title="Bagian-4 - Visualisasi Data dan Matriks kebingungan" class="md-nav__link">
+    Bagian-4 - Visualisasi Data dan Matriks kebingungan
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referensi" title="Referensi" class="md-nav__link">
+    Referensi
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Decision-tree/" title="Decision Tree" class="md-nav__link">
+      Decision Tree
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan" title="Pendahuluan" class="md-nav__link">
+    Pendahuluan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementasi" title="Implementasi" class="md-nav__link">
+    Implementasi
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bagian-1-pemrosesan-data-sebelumnya" title="Bagian 1 - Pemrosesan Data Sebelumnya" class="md-nav__link">
+    Bagian 1 - Pemrosesan Data Sebelumnya
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-2-memasukkan-k-nn-model" title="Bagian 2 - Memasukkan K-NN. Model" class="md-nav__link">
+    Bagian 2 - Memasukkan K-NN. Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-3-memprediksi-hasil-kumpulan-tes" title="Bagian 3 - Memprediksi hasil kumpulan Tes" class="md-nav__link">
+    Bagian 3 - Memprediksi hasil kumpulan Tes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bagian-4-visualisasi-data-dan-matriks-kebingungan" title="Bagian-4 - Visualisasi Data dan Matriks kebingungan" class="md-nav__link">
+    Bagian-4 - Visualisasi Data dan Matriks kebingungan
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referensi" title="Referensi" class="md-nav__link">
+    Referensi
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="k-nearest-neighbor">K-Nearest Neighbor<a class="headerlink" href="#k-nearest-neighbor" title="Permanent link">&para;</a></h1>
+<h2 id="pendahuluan">Pendahuluan<a class="headerlink" href="#pendahuluan" title="Permanent link">&para;</a></h2>
+<p><strong>1. Pengertian Nearest Neighbor B</strong></p>
+<p>​       Algoritma <em>Nearest Neighbor</em> (NN) merupakan algoritma pendekatan untuk mencari kasus dengan menghitung kedekatan antara kasus baru dengan kasus lama yaitu berdasarkan pencocokan bobot dari sejumlah atribut yang ada (Kusrini &amp; Emha, 2009). Nearest Neighbor akan mengklasifikasikan hanya jika atribut dari kasus baru sesuai dengan salah satu atribut pada kasus lama (Ricci, F <em>et al.</em>, 2010). Perhitungan jarak kedekatan antara kasus baru dengan kasus lama biasanya memakai metrik jarak. Satuan jarak yang umumnya digunakan adalah euclidian.</p>
+<p>​       Algoritma <em>k-Nearest Neighbor</em> adalah algoritma <em>supervised learning</em> dimana hasil dari instance yang baru diklasifikasikan berdasarkan mayoritas dari kategori <strong>k</strong>-tetangga terdekat.</p>
+<p>​       Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan <em>sample-sample</em> dari <em>training data</em>. Algoritma <em>k-Nearest Neighbor</em> menggunakan <em>Neighborhood Classification*sebagai nilai prediksi dari nilai *instance</em> yang baru.</p>
+<p><strong>2. Algoritma k - Nearest Neighbor (k-NN)</strong></p>
+<p>​   k-Nearest Neighborhood* (<em>k</em>-NN) adalah suatu metode yang menggunakan algoritma <em>supervised</em> dimana hasil dari <em>query instance</em> yang baru diklasifikasikan berdasarkan mayoritas dari label <em>class</em> pada <em>k</em>-NN. Tujuan dari algoritma <em>k</em>-NN adalah mengklasifikasikan objek baru berdasarkan atribut dan <em>training data</em>.</p>
+<p>Algoritma <em>k</em>-NN bekerja berdasarkan jarak terpendek dari <em>query instance</em> ke <em>training data</em> untuk menentukan <em>k</em>-NN-nya. Salah satu cara untuk menghitung jarak dekat atau jauhnya tetangga menggunakan metode <em>euclidian distance.</em></p>
+<p><em>Ecludian Distance</em> sering digunakan untuk menghitung jarak. <em>Euclidian Distance</em> berfungsi menguji ukuran yang bisa digunakan sebagai interpretasi kedekatan jarak antara dua obyek, di bawah ini merupakan rumus <em>Ecludian</em> <em>Distance</em>:</p>
+<p><img alt="" src="../assets/images/kn.png" /></p>
+<p>Dimana,</p>
+<p>Xik = nilai X pada <em>training data</em></p>
+<p>Xjk = nilai X pada <em>testing data</em></p>
+<p>m = batas jumlah banyaknya data</p>
+<p>Jika hasil nilai dari rumus di atas besar maka akan semakin jauh tingkat keserupaan antara kedua objek dan sebaliknya jika hasil nilainya semakin kecil maka akan semakin dekat tingkat keserupaan antar objek tersebut. Objek yang dimaksud adalah <em>training data</em> dan <em>testing data.</em></p>
+<p>Dalam algoritma ini, nilai <em>k</em> yang terbaik itu tergantung pada jumlah data. Ukuran nilai <em>k</em> yang besar belum tentu menjadi nilai <em>k</em> yang terbaik begitupun juga sebaliknya.</p>
+<p><strong>Langkah-langkah untuk menghitung algoritma k-NN:</strong></p>
+<ol>
+<li>
+<p>Menentukan nilai <em>k</em>. </p>
+</li>
+<li>
+<p>Menghitung kuadrat jarak <em>euclid</em> (<em>query instance</em>) masing-masing objek terhadap <em>training data</em> yang diberikan. </p>
+</li>
+<li>
+<p>Kemudian mengurutkan objek-objek tersebut ke dalam kelompok yang mempunyai jarak <em>euclid</em> terkecil. </p>
+</li>
+<li>
+<p>Mengumpulkan label <em>class</em> Y (klasifikasi <em>Nearest Neighborhood</em>). </p>
+</li>
+</ol>
+<p>Pada fase pembelajaran, algoritma ini hanya melakukan penyimpanan vektor-vektor fitur dan klasifikasi dari data pembelajaran. Pada fase klasifikasi, fitur-fitur yang sama dihitung untuk data test (yang klasifikasinya tidak diketahui). Jarak dari vektor yang baru ini terhadap seluruh vektor data pembelajaran dihitung, dan sejumlah k buah yang paling dekat diambil. Titik yang baru klasifikasinya diprediksikan termasuk pada klasifikasi terbanyak dari titik-titik tersebut.</p>
+<p>Nilai k yang terbaik untuk algoritma ini tergantung pada data; secara umumnya, nilai k yang tinggi akan mengurangi efek noise pada klasifikasi, tetapi membuat batasan antara setiap klasifikasi menjadi lebih kabur. Nilai k yang bagus dapat dipilih dengan optimasi parameter, misalnya dengan menggunakan cross-validation. Kasus khusus di mana klasifikasi diprediksikan berdasarkan data pembelajaran yang paling dekat (dengan kata lain, k = 1) disebut algoritma nearest neighbor.</p>
+<p>Ketepatan algoritma k-NN ini sangat dipengaruhi oleh ada atau tidaknya fitur-fitur yang tidak relevan, atau jika bobot fitur tersebut tidak setara dengan relevansinya terhadap klasifikasi. Riset terhadap algoritma ini sebagian besar membahas bagaimana memilih dan memberi bobot terhadap fitur, agar performa klasifikasi menjadi lebih baik.</p>
+<p>Terdapat beberapa jenis algoritma pencarian tetangga terdekat, diantaranya:</p>
+<p>·      Linear scan</p>
+<p>·      Pohon kd</p>
+<p>·      Pohon Balltree</p>
+<p>·      Pohon metrik</p>
+<p>·      Locally-sensitive hashing (LSH)</p>
+<p><strong>Kelebihan dan kekurangan K-NN</strong></p>
+<ol>
+<li>Kelebihan k-NN</li>
+</ol>
+<p>a.  Algoritma k-NN ini memiliki konsistensi yang kuat. Ketika jumlah data mendekati tak hingga, algoritma ini menjamin error rate yang tidak lebih dari dua kali Bayes error rate (error rate minimum untuk distribusi data tertentu).</p>
+<p>b.  k-NN tangguh terhadap training data yang <em>noisy</em> dan efektir apabila data latihnya beesar</p>
+<ol>
+<li>Kelemahan k-NN</li>
+</ol>
+<p>a.  k-NN perlu menentukan nilai dari parameter k (jumlah dari tetangga terdekat)</p>
+<p>b. Pembelajaran berdasarkan jarak tidak jelas mengenai jenis jarak apa yang harus digunakan dan atribut mana yangg harus digunakan untuk mendapatkan hasil yang terbaik.</p>
+<p>c. Biaya komputasi cukup tinggi karena diperlukan perhitungan jarak dari tiap sample uji pada keseluruhan sample latih.</p>
+<ol>
+<li>Implementasi</li>
+</ol>
+<p>Langkah.1) Pilih nomor K tetangga </p>
+<p>Langkah.2) Ambil K tetangga terdekat dari titik data baru, sesuai dengan Euclidean Distance 
+    Langkah.3) Di antara tetangga K ini, hitung jumlah titik data dalam setiap kategori 
+    Langkah.4) Tetapkan titik data baru ke kategori tempat Anda paling banyak menghitung tetangga.</p>
+<h2 id="implementasi">Implementasi<a class="headerlink" href="#implementasi" title="Permanent link">&para;</a></h2>
+<h4 id="bagian-1-pemrosesan-data-sebelumnya"><strong>Bagian 1 - Pemrosesan Data Sebelumnya</strong><a class="headerlink" href="#bagian-1-pemrosesan-data-sebelumnya" title="Permanent link">&para;</a></h4>
+<p>Langkahh 1 : Mengimpor perpustakaan</p>
+<pre class="codehilite"><code class="language-python">  impor numpy sebagai np 
+  impor matplotlib.pyplot sebagai plt 
+  impor panda sebagai pd </code></pre>
+
+<p>langkah ke 2 : Mengimpor dataset dataset berisi informasi pengguna jaringan, disini hanya memprediksi bahwa pengguna tertentu mengklik iklan dan membeli produk tertentu atau tidak.  Jadi tujuannya di sini adalah untuk membuat classifier yang akan menempatkan setiap pengguna ke dalam kategori yang benar dengan memprediksi apakah dia membeli produk atau tidak.</p>
+<pre class="codehilite"><code class="language-python">  dataset = pd.read_csv ('Sosial_Media.csv') </code></pre>
+
+<p>Langkah ke 3 : mencetak entri pertama dari dataset </p>
+<pre class="codehilite"><code class="language-python">print (dataset.head())</code></pre>
+
+<p>Fitur-fitur berikut ini dianggap sebagai variabel independen</p>
+<ol>
+<li>
+<p><strong>Usia</strong> </p>
+</li>
+<li>
+<p><strong>Taksiran Gaji</strong> </p>
+</li>
+<li>
+<p><strong>UserId</strong>  </p>
+</li>
+<li>
+<p><strong>Gender</strong></p>
+</li>
+</ol>
+<p>langkah ke 4 : Menyimpan variabel dependen dalam y yaitu Dibeli yaitu 1 jika pengguna membeli mobil dan 0 sebaliknya.</p>
+<pre class="codehilite"><code class="language-python">X = dataset.iloc[:, [2, 3]].values  
+y = dataset.iloc[:, 4].values</code></pre>
+
+<p><strong>Memisahkan dataset ke dalam set Pelatihan dan set Tes</strong></p>
+<p>Langkah ke 5 : Mengimpor pustaka Cross Validation yang sekarang dikenal sebagai ModelSelection dalam versi Python yang lebih baru</p>
+<pre class="codehilite"><code>from sklearn.model_selection import train_test_split</code></pre>
+
+
+<p>Langkah ke 6 :  membagi data menjadi 75% data untuk pelatihan dan 25% untuk menguji data </p>
+<pre class="codehilite"><code class="language-python"> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0) </code></pre>
+
+<p><strong>Penskalaan Fitur</strong></p>
+<p>​    </p>
+<p>Langkah ke 7 : menerapkan penskalaan fitur karena kami ingin prediksi yang akurat, yaitu kami ingin memprediksi pengguna mana yang akan membeli mobil atau tidak.</p>
+<pre class="codehilite"><code class="language-python">from sklearn.preprocessing import StandardScaler </code></pre>
+
+<p>Langkah ke 8 : Membuat Objek Skalar standar dari Kelas Preprocessing dan Scaling X_train
+dengan mencocokkan objek Standard Scalar ke Matrix of Features X_train Menskalakan X_test dengan dasar yang sama</p>
+<pre class="codehilite"><code> sc = StandardScaler () 
+ X_train = sc.fit_transform (X_train)
+ X_test = sc.transform (X_test) 
+</code></pre>
+
+<p>Langkah ke 9 : Untuk  melihat perbedaan dan mengonfirmasi bahwa mereka hampir mencapai skala yang sama.</p>
+<pre class="codehilite"><code class="language-python">print (X_train) 
+  cetak (X_test) </code></pre>
+
+<h3 id="bagian-2-memasukkan-k-nn-model">Bagian 2 - Memasukkan K-NN. Model<a class="headerlink" href="#bagian-2-memasukkan-k-nn-model" title="Permanent link">&para;</a></h3>
+<p>Langkah ke 10 :  kita perlu mengimpor perpustakaan scikit.neighbours dan dari sana kita akan mengimpor KNN Classifier</p>
+<pre class="codehilite"><code class="language-Python">from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier (n_neighbors = 5, metric = 'minkowski', p = 2) </code></pre>
+
+<p>Langkah ke 11 : Sekarang kita memasukkan objek classifier ke set pelatihan kita</p>
+<pre class="codehilite"><code>classifier.fit (X_train, y_train)</code></pre>
+
+
+<h3 id="bagian-3-memprediksi-hasil-kumpulan-tes">Bagian 3 - Memprediksi hasil kumpulan Tes<a class="headerlink" href="#bagian-3-memprediksi-hasil-kumpulan-tes" title="Permanent link">&para;</a></h3>
+<p>Langkah ke 12 : Karena classifier telah sesuai dengan Dataset, kita dapat memprediksi Hasil dari set tes.</p>
+<pre class="codehilite"><code class="language-sh">y_pred = classifier.predict(X_test)</code></pre>
+
+<p>Langkah ke 13 : Menampilkan nilai prediksi dan Sekarang untuk menghitung keakuratan </p>
+<pre class="codehilite"><code class="language-python">print(y_pred)
+c=0
+for i in range(0,len(y_pred)):
+    if(y_pred[i]==y_test[i]):
+        c=c+1
+accuracy=c/len(y_pred)
+print("Accuracy is")
+print(accuracy)</code></pre>
+
+<p>​       Jadi saat menjalankan ini, Akan mendapatkan akurasi, selanjutnya adalah visualisasi data, yang membantu kami memvisualisasi kan keakuratan dan kesalahan model kita.</p>
+<p>​    </p>
+<h3 id="bagian-4-visualisasi-data-dan-matriks-kebingungan">Bagian-4 - Visualisasi Data dan Matriks kebingungan<a class="headerlink" href="#bagian-4-visualisasi-data-dan-matriks-kebingungan" title="Permanent link">&para;</a></h3>
+<p>Memvisualisasikan hasil set Pelatihan</p>
+<pre class="codehilite"><code class="language-python">from matplotlib.colors import ListedColormap
+X_set, y_set = X_train, y_train
+X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
+plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+plt.xlim(X1.min(), X1.max())
+plt.ylim(X2.min(), X2.max())
+for i, j in enumerate(np.unique(y_set)):
+    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+                c = ListedColormap(('red', 'green'))(i), label = j)
+plt.title('K-NN (Training set)')
+plt.xlabel('Age')
+plt.ylabel('Estimated Salary')
+plt.legend()
+plt.show()</code></pre>
+
+<p><strong>Memvisualisasikan hasil set Tes</strong></p>
+<pre class="codehilite"><code class="language-python">
+from matplotlib.colors import ListedColormap
+X_set, y_set = X_train, y_train
+X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
+plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+             alpha = 0.75, cmap = ListedColormap(('red', 'green')))
+plt.xlim(X1.min(), X1.max())
+plt.ylim(X2.min(), X2.max())
+for i, j in enumerate(np.unique(y_set)):
+    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+                c = ListedColormap(('red', 'green'))(i), label = j)
+plt.title('K-NN (Training set)')
+plt.xlabel('Age')
+plt.ylabel('Estimated Salary')
+plt.legend()
+plt.show()
+
+</code></pre>
+
+<p><img alt="" src="../assets/images/knn1.PNG" /></p>
+<p>Sehingga muncul output seperti di bawah ini</p>
+<p><img alt="" src="../assets/images/knn2.PNG" /></p>
+<p>Semoga bermanfaat :)</p>
+<h2 id="referensi">Referensi<a class="headerlink" href="#referensi" title="Permanent link">&para;</a></h2>
+<p><a href="https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e">https://medium.com/bee-solution-partners/cara-kerja-algoritma-k-nearest-neighbor-k-nn-389297de543e</a></p>
+<p><a href="https://www.scribd.com/doc/226650315/Makalah-Nearest-Neighbors#download">https://www.scribd.com/doc/226650315/Makalah-Nearest-Neighbors#download</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../getting-started/" title="K-Means Clustering" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                K-Means Clustering
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Decision-tree/" title="Decision Tree" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Decision Tree
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Siti Nurizzatin Kamala
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/Sitinurizzatink" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://www.instagram.com/snizzatinka/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8c0d971c.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
